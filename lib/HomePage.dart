@@ -9,8 +9,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-var galleryPhoto;
-var cameraPhoto;
+var photo;
 var path;
 
 class _HomePageState extends State<HomePage> {
@@ -23,16 +22,9 @@ class _HomePageState extends State<HomePage> {
         body: Container(
           child: Center(
               child: Column(children: [
-            galleryPhoto != null
+            photo != null
                 ? Image.file(
-                    galleryPhoto,
-                    height: 400,
-                    width: 400,
-                  )
-                : SizedBox(),
-            cameraPhoto != null
-                ? Image.file(
-                    cameraPhoto,
+                    photo,
                     height: 400,
                     width: 400,
                   )
@@ -92,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     final XFile? _cameraPhoto =
         await _picker.pickImage(source: ImageSource.camera);
     setState(() {
-      cameraPhoto = File(_cameraPhoto!.path);
+      photo = File(_cameraPhoto!.path);
       path = _cameraPhoto.path;
     });
   }
@@ -101,7 +93,7 @@ class _HomePageState extends State<HomePage> {
     final XFile? _galleryPhoto =
         await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
-      galleryPhoto = File(_galleryPhoto!.path);
+      photo = File(_galleryPhoto!.path);
       path = _galleryPhoto.path;
     });
     print(_galleryPhoto!.path);
